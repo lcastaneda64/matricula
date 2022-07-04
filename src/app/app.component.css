@@ -1,0 +1,23 @@
+.nav-link {
+color: white;
+margin-left: 5px;
+    margin-right: 5px;
+}
+
+.navbar-nav .nav-link.active, .navbar-nav .show>.nav-link  {
+    color: white;
+    background: rgba(255,255,255,.15);
+    border-radius: 4px;
+}
+
+.nav-link:hover {
+    color: white;
+    background: rgba(255,255,255,.15);
+    border-radius: 4px;
+}
+
+.logo {
+    width: 150px;
+    aspect-ratio: auto 150 / 40;
+    height: 40px;
+}

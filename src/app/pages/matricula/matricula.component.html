@@ -1,0 +1,61 @@
+<div class="contenedor">
+    <div class="row justify-content-md-center ">
+        <div class="col-4 mt-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Registra tu matrícula</h5>
+                    <form (ngSubmit)="registrarMatricula(forma)" #forma="ngForm">
+                        <div class="mb-3">
+                            <label for="strNombreAlumno" class="form-label">Nombre completo</label>
+                            <input
+                                [ngClass]="{'is-invalid': strNombreAlumno.hasError('required') && strNombreAlumno.touched}"
+                                type="text" id="strNombreAlumno" name="strNombreAlumno"
+                                [(ngModel)]="matricula.strNombreAlumno" #strNombreAlumno="ngModel" class="form-control"
+                                placeholder="Ingresa tu nombre completo" required>
+                            <div id="validationServer03Feedback" class="invalid-feedback">
+                                Por favor especifíca el nombre completo
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="strMatricula" class="form-label">Matrícula</label>
+                            <input maxlength="11"
+                                [ngClass]="{'is-invalid': (strMatricula.hasError('required') && strMatricula.touched) || strMatricula.hasError('pattern')}"
+                                type="text" id="strMatricula" name="strMatricula" [(ngModel)]="matricula.strMatricula"
+                                #strMatricula="ngModel" class="form-control"
+                                placeholder="Ingresa tu matrícula (Ejem. UTM000000)" pattern="UTM+[0-9]+" required>
+                            <div *ngIf="strMatricula.hasError('required')" id="validationServer03Feedback"
+                                class="invalid-feedback">
+                                Por favor especifíca la matrícula
+                            </div>
+                            <div *ngIf="strMatricula.hasError('pattern')" id="validationServer03Feedback"
+                                class="invalid-feedback">
+                                Ingrese una matrícula válida (UTM000000)
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="strCorreoInstitucional" class="form-label">Correo institucional</label>
+                            <input
+                                [ngClass]="{'is-invalid': (strCorreoInstitucional.hasError('required') && strCorreoInstitucional.touched) || strCorreoInstitucional.hasError('pattern')}"
+                                type="text" id="strCorreoInstitucional" name="strCorreoInstitucional"
+                                [(ngModel)]="matricula.strCorreoInstitucional" #strCorreoInstitucional="ngModel"
+                                class="form-control" placeholder="Ingresa tu correo institucional" required
+                                pattern="[a-zA-Z0-9!#$%&'*_+-]([\.]?[a-zA-Z0-9!#$%&'*_+-])+@utma.edu.mx">
+                            <div *ngIf="strCorreoInstitucional.hasError('required')" id="validationServer03Feedback"
+                                class="invalid-feedback">
+                                Por favor especifíca un correo institucional válido
+                            </div>
+                            <div *ngIf="strCorreoInstitucional.hasError('pattern')" id="validationServer03Feedback"
+                                class="invalid-feedback">
+                                Ingrese un correo electrónico válido
+                            </div>
+                        </div>
+                        <button [disabled]="forma.invalid" type="submit" class="btn btn-primary">Registrar</button>
+                        <button (click)="limpiarFormulario(forma)" type="button" class="btn btn-danger ms-2">Limpiar
+                            formulario</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

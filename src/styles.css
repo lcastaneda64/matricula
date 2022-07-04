@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+html, body, :host {
+    height: 100%;
+    width: 100%;
+}
+
+
+.contenedor {
+    height: 100%;
+    width: 100%;
+    background-image: url("https://img.freepik.com/foto-gratis/fondo-estudio-fotografo-vacio-resumen-textura-fondo-belleza-azul-claro-oscuro-claro-gris-frio-pared-plana-degradado-blanco-nevado-piso_1258-54160.jpg?w=2000");
+    /* position: fixed; */
+}

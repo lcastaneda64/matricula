@@ -1,0 +1,164 @@
+<div class="contenedor">
+    <div class="row">
+        <div class="col-12">
+            <div class="card" *ngFor="let api of apisDocumentation">
+                <div class="card-header">
+                    {{api.name}} - API documentación
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" *ngFor="let method of api.methods">
+                        <div class="row justify-content-md-center">
+                            <div class="col">
+                                <div [ngClass]="{'alert-primary': method.name === 'GET', 'alert-success': method.name === 'POST', 'alert-warning': method.name === 'PUT', 'alert-danger': method.name === 'DELETE'}"
+                                    class="alert alert-primary" role="alert">
+                                    <span class="badge text-bg-primary"
+                                        [ngClass]="{'text-bg-primary': method.name === 'GET', 'text-bg-success': method.name === 'POST', 'text-bg-warning': method.name === 'PUT', 'text-bg-danger': method.name === 'DELETE'}">
+                                        {{method.name}}</span><span class="ms-1">{{method.url}}/{{api.name}}<span
+                                            *ngFor="let param of method.params"><span
+                                                *ngIf="param.type === 'params'">/:{{param.name}}</span></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <div class="col-6">
+                                <div class="card card-list-container">
+                                    <div class="card-header">
+                                        Params
+                                    </div>
+                                    <ul class="list-group list-group-flush" *ngFor="let params of method.params">
+                                        <li class="list-group-item">
+                                            <span class="badge"
+                                                [ngClass]="{'text-bg-primary': params.type === 'query', 'text-bg-secondary': params.type === 'params'}">
+                                                {{params.type}}
+                                            </span>
+                                            <span class="ms-1"
+                                                *ngIf="params.type === 'query'">?{{params.name}}={{params.exampleValue}}
+                                            </span>
+                                            <span class="ms-1" *ngIf="params.type === 'params'">/:{{params.name}}
+                                            </span>
+                                            <span *ngIf="params.required">(Requerido)</span>
+                                            <span *ngIf="!params.required">(NO requerido)</span>
+                                        </li>
+                                    </ul>
+                                    <ul class="list-group list-group-flush" *ngIf="method.params.length <= 0">
+                                        <li class="list-group-item noData">No cuenta con parámetros de tipo Params</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="card card-list-container">
+                                    <div class="card-header">
+                                        Body Params
+                                    </div>
+                                    <ul class="list-group list-group-flush"
+                                        *ngFor="let bodyParams of method.bodyParams">
+                                        <li class="list-group-item">{{bodyParams.name}} <span
+                                                *ngIf="bodyParams.required">(Requerido)</span> <span
+                                                *ngIf="!bodyParams.required">(NO requerido)</span></li>
+                                    </ul>
+                                    <ul class="list-group list-group-flush" *ngIf="method.bodyParams.length <= 0">
+                                        <li class="list-group-item noData">No cuenta con parámetros de tipo Body</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Responses
+                                    </div>
+                                    <ul class="list-group list-group-flush" *ngFor="let response of method.responses">
+                                        <li class="list-group-item">
+                                            <span class="badge text-bg-success"
+                                                [ngClass]="{'text-bg-danger': response.error, 'text-bg-success': !response.error}">
+                                                {{response.statusCode}}
+                                            </span>
+                                            {{response.message}}
+                                        </li>
+                                    </ul>
+                                    <ul class="list-group list-group-flush" *ngIf="method.responses.length <= 0">
+                                        <li class="list-group-item noData">No cuenta con respuestas</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Live preview
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row mb-4">
+                                                    <div class="col-12">
+                                                            <span class="badge text-bg-primary"
+                                                                [ngClass]="{'text-bg-primary': method.name === 'GET', 'text-bg-success': method.name === 'POST', 'text-bg-warning': method.name === 'PUT', 'text-bg-danger': method.name === 'DELETE'}">
+                                                                {{method.name}}</span>
+                                                        <span *ngIf="method.dynamicUrl === undefined">
+                                                            <span class="ms-1">{{method.url}}/{{api.name}}
+                                                                <span *ngFor="let param of method.params">
+                                                                    <span *ngIf="param.type === 'params'">/:{{param.name}}</span>
+                                                                </span>
+                                                            </span>
+                                                        </span>
+                                                        <span class="ms-1">{{method.dynamicUrl}}</span>
+                                                    </div>
+                                                </div>
+                                                    <form (ngSubmit)="submitRequest(api.name, method)">
+                                                        <div class="row">
+                                                            <span *ngIf="method.params.length >= 1">
+                                                                <span>Params</span><hr>
+                                                            </span>
+                                                            <div class="col-4" *ngFor="let param of method.params">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">{{param.name}}{{param.required ? "*" : ""}}</label>
+                                                                    <input type="text" class="form-control"
+                                                                        [(ngModel)]="method.form[api.name+':'+method.name+':'+param.type+':'+param.name]"
+                                                                        [id]="api.name+':'+method.name+':'+param.type+':'+param.name"
+                                                                        [name]="api.name+':'+method.name+':'+param.type+':'+param.name"
+                                                                        [placeholder]="'Favor de ingresar ' + param.name"
+                                                                        [required]="param.required">
+                                                                    <div id="validationServer03Feedback" class="invalid-feedback">
+                                                                        {{'Favor de ingresar ' + param.name}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <span *ngIf="method.bodyParams.length >= 1">
+                                                                <span>Body</span><hr>
+                                                            </span>
+                                                            <div class="col-4" *ngFor="let body of method.bodyParams">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">{{body.fieldName}}{{body.required ? "*" : ""}} ({{body.name}})</label>
+                                                                    <input type="text" class="form-control"
+                                                                        [(ngModel)]="method.form[api.name+':'+method.name+':body:'+body.name]"
+                                                                        [id]="api.name+':'+method.name+':body:'+body.name"
+                                                                        [name]="api.name+':'+method.name+':body:'+body.name"
+                                                                        [placeholder]="'Favor de ingresar ' + body.fieldName"
+                                                                        [required]="body.required">
+                                                                    <div id="validationServer03Feedback" class="invalid-feedback">
+                                                                        {{'Favor de ingresar ' + body.name}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row justify-content-md-center">
+                                                            <div class="col-4 text-center">
+                                                                <button type="submit" class="btn btn-primary">Request</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                            </div>
+                                        </div>
+                                        <div class="data-preview">
+                                            <pre class="m-3">{{ method.returnData | json}}</pre>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
