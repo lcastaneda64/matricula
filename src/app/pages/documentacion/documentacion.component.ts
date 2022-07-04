@@ -31,7 +31,36 @@ export class DocumentacionComponent implements OnInit {
             required: true
           }],
           bodyParams: [],
-          responses: [],
+          responses: [{
+              statusCode: 400,
+              error: true,
+              message: "No se recibió una matrícula válida"
+            },
+            {
+              statusCode: 404,
+              error: true,
+              message: "No se recibió una matrícula válida"
+            },
+            {
+              statusCode: 500,
+              error: true,
+              message: "Error al intentar consumir la API"
+            },
+            {
+              statusCode: 404,
+              error: true,
+              message: "No se encontraron usuarios para consultar"
+            },
+            {
+              statusCode: 200,
+              error: false,
+              message: "Se consultaron los usuarios exitosamente"
+            },
+            {
+              statusCode: 500,
+              error: true,
+              message: "Error al intentar consultar los usuarios."
+            }],
           form: {},
           returnData: {},
           dynamicUrl: undefined
@@ -122,29 +151,63 @@ export class DocumentacionComponent implements OnInit {
           }],
           bodyParams: [{
             name: "strNombre",
-            exampleValue: "Nombre",
+            fieldName: "Nombre",
             dataType: "string",
             required: true
           },
           {
             name: "strPrimerApellido",
-            exampleValue: "Primer apellido",
+            fieldName: "Primer apellido",
             dataType: "string",
             required: true
           },
           {
             name: "strSegundoApellido",
-            exampleValue: "Segundo apellido",
+            fieldName: "Segundo apellido",
             dataType: "string",
             required: false
           },
           {
             name: "nmbEdad",
-            exampleValue: "Segundo apellido",
+            fieldName: "Edad",
             dataType: "number",
             required: true
           }],
-          responses: [],
+          responses: [{
+              statusCode: 400,
+              error: true,
+              message: "No se recibió una matrícula válida"
+            },
+            {
+              statusCode: 404,
+              error: true,
+              message: "No se recibió una matrícula válida"
+            },
+            {
+              statusCode: 500,
+              error: true,
+              message: "Error al intentar consumir la API"
+            },
+            {
+              statusCode: 400,
+              error: true,
+              message: "No se recibió un identificador válido."
+            },
+            {
+              statusCode: 404,
+              error: true,
+              message: "No se encontró el usuario para actualizar."
+            },
+            {
+              statusCode: 200,
+              error: false,
+              message: "Se actualizó el usuario exitosamente"
+            },
+            {
+              statusCode: 500,
+              error: true,
+              message: "Error al intentar actualizar el usuario."
+            }],
           form: {},
           returnData: {},
           dynamicUrl: undefined
@@ -165,7 +228,41 @@ export class DocumentacionComponent implements OnInit {
             required: true
           }],
           bodyParams: [],
-          responses: [],
+          responses: [{
+              statusCode: 400,
+              error: true,
+              message: "No se recibió una matrícula válida"
+            },
+            {
+              statusCode: 404,
+              error: true,
+              message: "No se recibió una matrícula válida"
+            },
+            {
+              statusCode: 500,
+              error: true,
+              message: "Error al intentar consumir la API"
+            },
+            {
+              statusCode: 400,
+              error: true,
+              message: "No se recibió un identificador válido."
+            },
+            {
+              statusCode: 404,
+              error: true,
+              message: "No se encontró el usuario a eliminar."
+            },
+            {
+              statusCode: 200,
+              error: true,
+              message: "Se eliminó el usuario exitosamente"
+            },
+            {
+              statusCode: 500,
+              error: true,
+              message: "Error al intentar eliminar el usuario."
+            },],
           form: {},
           returnData: {},
           dynamicUrl: undefined
