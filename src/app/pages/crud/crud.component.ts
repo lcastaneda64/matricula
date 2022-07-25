@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ResponseModel } from 'src/app/models/Response.model';
 import { UsuarioModel } from 'src/app/models/Usuario.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crud',
@@ -18,11 +19,13 @@ export class CrudComponent implements OnInit {
     this.usuarioService.getUsuarios()
     .then((response: any) => {
       this.usuarios = response.cont.usuarios;
-      console.log(this.usuarios);
-      
     })
-    .catch((error: any) => {});
-
+    .catch((error: any) => {
+      Swal.fire({
+        icon: "error",
+        text: error.error.msg
+      });
+    });
   }
 
   actualizar() {

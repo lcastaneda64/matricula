@@ -8,9 +8,7 @@
         </div>
         <div class="col-6 mt-5">
             <div class="card">
-            <div class="card-header">
-                Tabla de datos <button (click)="actualizar()" type="button" class="btn btn-primary">Actualizar</button>
-            </div>
+            <div class="card-header">Tabla de datos</div>
             <table class="table">
             <thead>
                 <tr>
@@ -22,22 +20,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                </tr>
-                <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
+                <tr *ngFor="let usuario of usuarios; let index = index">
+                    <th scope="row">{{index+1}}</th>
+                    <td>{{usuario.strNombre}} {{usuario.strPrimerApellido}} {{usuario.strSegundoApellido}}</td>
+                    <td>{{usuario.nmbEdad}}</td>
+                    <td><button (click)="actualizar()" class="btn btn-primary"><i class="bi bi-pencil-square"></i></button></td>
+                    <td><button class="btn btn-danger"><i class="bi bi-trash"></i></button></td>
                 </tr>
             </tbody>
             </table>
