@@ -1,11 +1,48 @@
-<div class="contenedor">
-    <div class="row justify-content-md-center ">
-        <div class="col-4 mt-4">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6" *ngIf="!mostrarActualizar">
+            <app-registrar-usuario></app-registrar-usuario>
+        </div>
+        <div class="col-6" *ngIf="mostrarActualizar">
+            <app-actualizar-usuario></app-actualizar-usuario>
+        </div>
+        <div class="col-6 mt-5">
             <div class="card">
-                <div class="card-body text-center">
-                  <p>PRÓXIMAMENTE</p>
-                </div>
+            <div class="card-header">
+                Tabla de datos <button (click)="actualizar()" type="button" class="btn btn-primary">Actualizar</button>
             </div>
+            <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre Completo</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Actualizar</th>
+                <th scope="col">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                </tr>
+                <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+                </tr>
+            </tbody>
+            </table>
+            </div>
+
         </div>
     </div>
 </div>

@@ -1,20 +1,20 @@
 <div class="container-fluid" style="padding: 0px; overflow-x: hidden; height: 100%; width: 100%;">
-<nav class="navbar navbar-expand-lg " style="background: #1976d2; color: white;">
-  <div class="container-fluid" style="">
-    <a class="navbar-brand" [routerLink]="['/']" style="color: white;">
-      <img src="https://angular.io/assets/images/logos/angular/logo-nav@2x.png" class="d-inline-block align-text-top logo">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" routerLinkActive="active"  aria-current="page" routerLink="/matricula">Matrícula</a>
-        <a class="nav-link" routerLinkActive="active"  routerLink="/api">Documentación API</a>
-        <a class="nav-link" routerLinkActive="active"  routerLink="/crud">Ejemplo CRUD</a>
+  <nav class="navbar navbar-expand-lg " style="background: #1976d2; color: white;">
+    <div class="container-fluid" style="">
+      <a class="navbar-brand" [routerLink]="['/']" style="color: white;">
+        <img src="https://angular.io/assets/images/logos/angular/logo-nav@2x.png" class="d-inline-block align-text-top logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" routerLinkActive="active"  aria-current="page" routerLink="/matricula">Matrícula</a>
+          <a class="nav-link" routerLinkActive="active"  routerLink="/api">Documentación API</a>
+          <a class="nav-link" routerLink="/crud">Ejemplo CRUD</a>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
   <router-outlet></router-outlet>
 </div>

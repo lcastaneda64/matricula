@@ -1,9 +1,9 @@
 export class UsuarioModel {
 
     _id?: string;
-    strNombreAlumno: string = "";
-    strMatricula: string = "";
-    strCorreoInstitucional: string = "";
-    blnActivo: boolean = false;
+    strNombre: string = "";
+    strPrimerApellido: string = "";
+    strSegundoApellido: string = "";
+    nmbEdad: number = 0;
 
 }

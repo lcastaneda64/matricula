@@ -9,6 +9,8 @@ import { CrudComponent } from './pages/crud/crud.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
+import { RegistrarUsuarioComponent } from './pages/crud/registrar-usuario/registrar-usuario.component';
+import { ActualizarUsuarioComponent } from './pages/crud/actualizar-usuario/actualizar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { FormsModule } from '@angular/forms';
     MatriculaComponent,
     DocumentacionComponent,
     CrudComponent,
-    HomeComponent
+    HomeComponent,
+    RegistrarUsuarioComponent,
+    ActualizarUsuarioComponent
   ],
   imports: [
     BrowserModule,
