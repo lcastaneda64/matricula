@@ -66,6 +66,56 @@ export class DocumentacionComponent implements OnInit {
           dynamicUrl: undefined
         },
         {
+          name: "GET",
+          url: this.baseUrl,
+          params: [{
+            name: "matricula",
+            exampleValue: "UTM000000",
+            type: "query",
+            required: true
+          },
+          {
+            name: "id",
+            exampleValue: "62bd3246cb9f1b6629349c16",
+            type: "params",
+            required: true
+          }],
+          bodyParams: [],
+          responses: [{
+              statusCode: 400,
+              error: true,
+              message: "No se recibió una matrícula válida"
+            },
+            {
+              statusCode: 404,
+              error: true,
+              message: "No se recibió una matrícula válida"
+            },
+            {
+              statusCode: 500,
+              error: true,
+              message: "Error al intentar consumir la API"
+            },
+            {
+              statusCode: 404,
+              error: true,
+              message: "No se encontraron usuarios para consultar"
+            },
+            {
+              statusCode: 200,
+              error: false,
+              message: "Se consultaron los usuarios exitosamente"
+            },
+            {
+              statusCode: 500,
+              error: true,
+              message: "Error al intentar consultar los usuarios."
+            }],
+          form: {},
+          returnData: {},
+          dynamicUrl: undefined
+        },
+        {
           name: "POST",
           url: this.baseUrl,
           params: [{
@@ -315,10 +365,6 @@ export class DocumentacionComponent implements OnInit {
     for (const param of params) {
       method.dynamicUrl = `${method.dynamicUrl}/${param.value}`
     }
-
-      console.log(method.dynamicUrl);
-      console.log(query);
-      console.log(body);
     try {
 
     switch (method.name) {
