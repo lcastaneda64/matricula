@@ -1,0 +1,19 @@
+.card {
+    margin: 10px;
+}
+
+.card-list-container{
+    height: 100%;
+    margin: 10px;
+}
+
+.noData {
+        color: #CCC;
+    text-align: center;
+    font-variant: small-caps;
+}
+
+.data-preview{
+    background: #000;
+    color: #FFF;
+}

@@ -3,17 +3,17 @@
         Actualizar usuario
     </div>
     <div class="card-body">
-        <form class="row g-3">
+        <form (ngSubmit)="actualizarUsuario(forma)" #forma="ngForm" class="row g-3">
         <div class="col-md-6">
             <label for="label-strNombre" class="form-label">Nombre:</label>
-            <input type="text" class="form-control" id="strNombre" value="" required>
+            <input #inputStrNombre="ngModel"  type="text" name="strNombre" [ngClass]="{'is-invalid': inputStrNombre.touched && inputStrNombre.hasError('required') }" [(ngModel)]="usuario.strNombre" class="form-control" id="strNombre" value="" required>
             <div class="invalid-feedback">
                 El campo es requerido
             </div>
         </div>
         <div class="col-md-6">
             <label for="label-strPrimerApellido" class="form-label">Primer Apellido</label>
-            <input type="text" class="form-control" id="strPrimerApellido" value="" required>
+            <input #inputStrSegundoApellido="ngModel" type="text" name="strPrimerApellido" [ngClass]="{'is-invalid': inputStrSegundoApellido.touched && inputStrSegundoApellido.hasError('required') }" [(ngModel)]="usuario.strPrimerApellido" class="form-control" id="strPrimerApellido" value="" required>
             <div class="invalid-feedback">
                 El campo es requerido
             </div>
@@ -21,19 +21,20 @@
 
         <div class="col-md-6">
             <label for="label-strSegundoApellido" class="form-label">Segundo Apellido</label>
-            <input type="text" class="form-control" id="strSegundoApellido">
+            <input type="text" name="strSegundoApellido" [(ngModel)]="usuario.strSegundoApellido" class="form-control" id="strSegundoApellido">
         </div>
 
         <div class="col-md-6">
             <label for="label-nmbEdad" class="form-label">Edad</label>
-            <input type="number" class="form-control" id="nmbEdad" required>
+            <input #inputNmbEdad="ngModel" type="number" name="nmbEdad" min="0" max="99" [ngClass]="{'is-invalid': inputNmbEdad.touched && inputNmbEdad.hasError('required') }" [(ngModel)]="usuario.nmbEdad" class="form-control" id="nmbEdad" required>
             <div class="invalid-feedback">
                 Es necesario ingresar la edad
             </div>
         </div>
 
         <div class="col-12 text-center">
-            <button class="btn btn-primary" type="submit">Actualizar</button>
+            <button class=" btn btn-primary" type="submit" [disabled]="forma.invalid">Actualizar</button>
+            <button style="margin-left: 10px;" class=" btn btn-danger" type="button" (click)="limpiarForm(forma)">Limpiar</button>
         </div>
         </form>
     </div>

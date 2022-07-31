@@ -4,23 +4,29 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatriculaComponent } from './pages/matricula/matricula.component';
-import { DocumentacionComponent } from './pages/documentacion/documentacion.component';
 import { CrudComponent } from './pages/crud/crud.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
 import { RegistrarUsuarioComponent } from './pages/crud/registrar-usuario/registrar-usuario.component';
 import { ActualizarUsuarioComponent } from './pages/crud/actualizar-usuario/actualizar-usuario.component';
+import { ApiUsuarioComponent } from './pages/docs/api-usuario/api-usuario.component';
+import { ApiEmpresaComponent } from './pages/docs/api-empresa/api-empresa.component';
+import { EmpresaCrudComponent } from './pages/empresa-crud/empresa-crud.component';
+import { ApiAccordionComponent } from './components/api-accordion/api-accordion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MatriculaComponent,
-    DocumentacionComponent,
     CrudComponent,
     HomeComponent,
     RegistrarUsuarioComponent,
-    ActualizarUsuarioComponent
+    ActualizarUsuarioComponent,
+    ApiUsuarioComponent,
+    ApiEmpresaComponent,
+    EmpresaCrudComponent,
+    ApiAccordionComponent
   ],
   imports: [
     BrowserModule,

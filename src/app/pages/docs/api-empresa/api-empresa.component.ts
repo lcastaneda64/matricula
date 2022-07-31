@@ -1,25 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { lastValueFrom } from 'rxjs';
-import { DynamicService } from 'src/app/services/dynamic.service';
 import { environment } from 'src/environments/environment.prod';
 
 @Component({
-  selector: 'app-documentacion',
-  templateUrl: './documentacion.component.html',
-  styleUrls: ['./documentacion.component.css']
+  selector: 'app-api-empresa',
+  templateUrl: './api-empresa.component.html',
+  styleUrls: ['./api-empresa.component.css']
 })
-export class DocumentacionComponent implements OnInit {
-
-  data  = {"msg":"Matrícula registrada exitosamente","status":200,"cont":{"matricula":{"strNombreAlumno":"sdfds","strMatricula":"UTM00000000","strCorreoInstitucional":"lcastand@utma.edu.mx","blnActivo":false,"_id":"62c283d61d1c190044ee3d19","created_at":"2022-07-04T06:08:22.736Z","updated_at":"2022-07-04T06:08:22.736Z","__v":0}}}
+export class ApiEmpresaComponent implements OnInit {
 
   baseUrl = environment.baseUrl;
-
-  constructor(private dynamicService: DynamicService) { }
-
   apisDocumentation: any = [
     {
-      name: "usuario",
+      name: "empresa",
       methods: [
         {
           name: "GET",
@@ -29,6 +21,12 @@ export class DocumentacionComponent implements OnInit {
             exampleValue: "UTM000000",
             type: "query",
             required: true
+          },
+          {
+            name: "termino",
+            exampleValue: "google",
+            type: "query",
+            required: false
           }],
           bodyParams: [],
           responses: [{
@@ -49,17 +47,17 @@ export class DocumentacionComponent implements OnInit {
             {
               statusCode: 404,
               error: true,
-              message: "No se encontraron usuarios para consultar"
+              message: "No se encontraron empresas para consultar"
             },
             {
               statusCode: 200,
               error: false,
-              message: "Se consultaron los usuarios exitosamente"
+              message: "Se consultaron las empresas exitosamente"
             },
             {
               statusCode: 500,
               error: true,
-              message: "Error al intentar consultar los usuarios."
+              message: "Error al intentar consultar las empresas."
             }],
           form: {},
           returnData: {},
@@ -99,17 +97,17 @@ export class DocumentacionComponent implements OnInit {
             {
               statusCode: 404,
               error: true,
-              message: "No se encontraron usuarios para consultar"
+              message: "No se encontraron empresas para consultar"
             },
             {
               statusCode: 200,
               error: false,
-              message: "Se consultaron los usuarios exitosamente"
+              message: "Se consultaron las empresas exitosamente"
             },
             {
               statusCode: 500,
               error: true,
-              message: "Error al intentar consultar los usuarios."
+              message: "Error al intentar consultar las empresas."
             }],
           form: {},
           returnData: {},
@@ -131,22 +129,34 @@ export class DocumentacionComponent implements OnInit {
             required: true
           },
           {
-            name: "strPrimerApellido",
-            fieldName: "Primer apellido",
+            name: "strRazónSocial",
+            fieldName: "Razón social",
             dataType: "string",
             required: true
           },
           {
-            name: "strSegundoApellido",
-            fieldName: "Segundo apellido",
+            name: "strRFC",
+            fieldName: "RFC",
+            dataType: "string",
+            required: true
+          },
+          {
+            name: "strDireccion",
+            fieldName: "Dirección",
             dataType: "string",
             required: false
           },
           {
-            name: "nmbEdad",
-            fieldName: "Edad",
-            dataType: "number",
+            name: "strUrlLogo",
+            fieldName: "URL Logo",
+            dataType: "string",
             required: true
+          },
+          {
+            name: "strPais",
+            fieldName: "País",
+            dataType: "string",
+            required: false
           }],
           responses: [
             {
@@ -172,12 +182,12 @@ export class DocumentacionComponent implements OnInit {
             {
               statusCode: 200,
               error: false,
-              message: "Usuario registrado exitosamente"
+              message: "Empresa registrada exitosamente"
             },
             {
               statusCode: 500,
               error: true,
-              message: "Error al registrar el usuario"
+              message: "Error al registrar la empresa"
             }
           ],
           form: {},
@@ -206,22 +216,34 @@ export class DocumentacionComponent implements OnInit {
             required: true
           },
           {
-            name: "strPrimerApellido",
-            fieldName: "Primer apellido",
+            name: "strRazónSocial",
+            fieldName: "Razón social",
             dataType: "string",
             required: true
           },
           {
-            name: "strSegundoApellido",
-            fieldName: "Segundo apellido",
+            name: "strRFC",
+            fieldName: "RFC",
+            dataType: "string",
+            required: true
+          },
+          {
+            name: "strDireccion",
+            fieldName: "Dirección",
             dataType: "string",
             required: false
           },
           {
-            name: "nmbEdad",
-            fieldName: "Edad",
-            dataType: "number",
+            name: "strUrlLogo",
+            fieldName: "URL Logo",
+            dataType: "string",
             required: true
+          },
+          {
+            name: "strPais",
+            fieldName: "País",
+            dataType: "string",
+            required: false
           }],
           responses: [{
               statusCode: 400,
@@ -246,17 +268,17 @@ export class DocumentacionComponent implements OnInit {
             {
               statusCode: 404,
               error: true,
-              message: "No se encontró el usuario para actualizar."
+              message: "No se encontró la empresa para actualizar."
             },
             {
               statusCode: 200,
               error: false,
-              message: "Se actualizó el usuario exitosamente"
+              message: "Se actualizó la empresa exitosamente"
             },
             {
               statusCode: 500,
               error: true,
-              message: "Error al intentar actualizar el usuario."
+              message: "Error al intentar actualizar la empresa."
             }],
           form: {},
           returnData: {},
@@ -301,17 +323,17 @@ export class DocumentacionComponent implements OnInit {
             {
               statusCode: 404,
               error: true,
-              message: "No se encontró el usuario a eliminar."
+              message: "No se encontró la empresa a eliminar."
             },
             {
               statusCode: 200,
               error: true,
-              message: "Se eliminó el usuario exitosamente"
+              message: "Se eliminó la empresa exitosamente"
             },
             {
               statusCode: 500,
               error: true,
-              message: "Error al intentar eliminar el usuario."
+              message: "Error al intentar eliminar la empresa."
             },],
           form: {},
           returnData: {},
@@ -320,77 +342,9 @@ export class DocumentacionComponent implements OnInit {
     }
   ]
 
+  constructor() { }
+  
   ngOnInit(): void {
-  }
-
-  public async submitRequest(apiName: string, method: any): Promise<void> {
-
-    console.log(method.form);
-    
-    const requestData: any[] =[];
-    let i = 0;
-    for (const key in method.form) {
-      requestData[i] = {};
-      requestData[i].type = key.split(":")[2];
-      requestData[i].value = method.form[key];
-      requestData[i][key.split(":")[3]] = method.form[key];
-      i++;
-    }
-    method.dynamicUrl = `${this.baseUrl}/${apiName}`;
-
-    const queryParams = requestData.filter((r: any) => r.type === 'query');
-    const bodyParams = requestData.filter((r: any) => r.type === 'body');
-    const params = requestData.filter((r: any) => r.type === 'params');
-
-    let query: any = {};
-    for (const queryParam of queryParams) {
-      for (const key in queryParam) {
-        if(key !== 'value' && key !== 'type') { 
-          query[key] = queryParam[key];
-        }
-        
-      }
-    }
-
-    let body: any = {};
-    for (const bodyParam of bodyParams) {
-      for (const key in bodyParam) {
-        if(key !== 'value' && key !== 'type') { 
-          body[key] = bodyParam[key];
-        }
-        
-      }
-    }
-
-    for (const param of params) {
-      method.dynamicUrl = `${method.dynamicUrl}/${param.value}`
-    }
-    try {
-
-    switch (method.name) {
-      case "GET":
-        method.returnData = await lastValueFrom(this.dynamicService.getData(method.dynamicUrl, query));
-        break;
-      case "POST":
-        method.returnData = await lastValueFrom(this.dynamicService.postData(method.dynamicUrl, body, query));
-        break;
-      case "PUT":
-        method.returnData = await lastValueFrom(this.dynamicService.putData(method.dynamicUrl, body, query));
-        break;
-      case "DELETE":
-        method.returnData = await lastValueFrom(this.dynamicService.deleteData(method.dynamicUrl, query));
-        break;
-      default:
-        break;
-    }
-
-    } catch (err: any) {
-      method.returnData = err.error;
-    }
-
-    console.log(method.returnData);
-    
-
   }
 
 }

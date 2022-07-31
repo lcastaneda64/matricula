@@ -13,6 +13,7 @@ export class CrudComponent implements OnInit {
 
   mostrarActualizar: boolean = false;
   usuarios: UsuarioModel[] = [];
+  idUsuario: string = "";
   constructor(private readonly usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
@@ -28,8 +29,9 @@ export class CrudComponent implements OnInit {
     });
   }
 
-  actualizar() {
-    this.mostrarActualizar = !this.mostrarActualizar;
+  actualizar(idUsuario: any) {
+    this.idUsuario = idUsuario;
+    this.mostrarActualizar = true;
   }
 
 }
