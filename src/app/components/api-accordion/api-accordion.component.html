@@ -8,7 +8,7 @@
                 <h2 class="accordion-header" [id]="'headingOne'+i">
                     <button class="accordion-button btn" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+i" aria-expanded="true" [attr.aria-controls]="'#collapse'+i"
                     [ngClass]="{'btn-primary': method.name === 'GET', 'btn-success': method.name === 'POST', 'btn-warning': method.name === 'PUT', 'btn-danger': method.name === 'DELETE'}">
-                        <span class="badge text-bg-primary"
+                        <span style="width: 60px;" class="badge text-bg-primary text-center"
                             [ngClass]="{'text-bg-primary': method.name === 'GET', 'text-bg-success': method.name === 'POST', 'text-bg-warning': method.name === 'PUT', 'text-bg-danger': method.name === 'DELETE'}">
                             {{method.name}}
                         </span>
@@ -21,7 +21,7 @@
                 <div [id]="'collapse'+i" class="accordion-collapse collapse" [attr.aria-labelledby]="'headingOne'+i" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <div class="row justify-content-md-center">
-                <div class="col-6">
+                <div class="col-12 mt-3 col-md-6">
                     <div class="card card-list-container">
                         <div class="card-header">
                             Params
@@ -46,7 +46,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-12 mt-3 col-md-6">
                     <div class="card card-list-container">
                         <div class="card-header">
                             Body Params
@@ -109,7 +109,7 @@
                                                 <span *ngIf="method.params.length >= 1">
                                                     <span>Params</span><hr>
                                                 </span>
-                                                <div class="col-4" *ngFor="let param of method.params">
+                                                <div class="col-12 col-sm-6 col-md-4" *ngFor="let param of method.params">
                                                     <div class="mb-3">
                                                         <label class="form-label">{{param.name}}{{param.required ? "*" : ""}}</label>
                                                         <input type="text" class="form-control"
@@ -126,7 +126,7 @@
                                                 <span *ngIf="method.bodyParams.length >= 1">
                                                     <span>Body</span><hr>
                                                 </span>
-                                                <div class="col-4" *ngFor="let body of method.bodyParams">
+                                                <div class="col-12 col-sm-6 col-md-4" *ngFor="let body of method.bodyParams">
                                                     <div class="mb-3">
                                                         <label class="form-label">{{body.fieldName}}{{body.required ? "*" : ""}} ({{body.name}})</label>
                                                         <input type="text" class="form-control"
