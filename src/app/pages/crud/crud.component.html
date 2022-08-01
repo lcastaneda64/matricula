@@ -1,10 +1,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-6" *ngIf="!mostrarActualizar">
-            <app-registrar-usuario></app-registrar-usuario>
+            <app-registrar-usuario (emitirRegistro)="this.obtenerUsuarios()"></app-registrar-usuario>
         </div>
         <div class="col-6" *ngIf="mostrarActualizar">
-            <app-actualizar-usuario [idUsuario]="idUsuario"></app-actualizar-usuario>
+            <app-actualizar-usuario (emitirActualizacion)="this.restableceRegistro()" [idUsuario]="idUsuario"></app-actualizar-usuario>
         </div>
         <div class="col-6 mt-5">
             <div class="card">
@@ -25,7 +25,7 @@
                     <td>{{usuario.strNombre}} {{usuario.strPrimerApellido}} {{usuario.strSegundoApellido}}</td>
                     <td>{{usuario.nmbEdad}}</td>
                     <td><button (click)="actualizar(usuario._id)" class="btn btn-primary"><i class="bi bi-pencil-square"></i></button></td>
-                    <td><button class="btn btn-danger"><i class="bi bi-trash"></i></button></td>
+                    <td><button (click)="eliminar(usuario)" class="btn btn-danger"><i class="bi bi-trash"></i></button></td>
                 </tr>
             </tbody>
             </table>

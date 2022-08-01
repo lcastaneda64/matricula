@@ -27,9 +27,11 @@ export class UsuarioService {
     return lastValueFrom(this.http.post(`${this.url}`, usuario, {params: {matricula: this.matricula}}));
   }
 
-  putUsuario() {
+  putUsuario(usuario: UsuarioModel, idUsuario: string) {
+    return lastValueFrom(this.http.put(`${this.url}/${idUsuario}`, usuario, {params: {matricula: this.matricula}}));
   }
 
-  deleteUsuario(){
+  deleteUsuario(idUsuario: any){
+    return lastValueFrom(this.http.delete(`${this.url}/${idUsuario}`, {params: {matricula: this.matricula}}))  
   }
 }

@@ -17,6 +17,10 @@ export class CrudComponent implements OnInit {
   constructor(private readonly usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
+    this.obtenerUsuarios();
+  }
+
+  obtenerUsuarios() {
     this.usuarioService.getUsuarios()
     .then((response: any) => {
       this.usuarios = response.cont.usuarios;
@@ -32,6 +36,39 @@ export class CrudComponent implements OnInit {
   actualizar(idUsuario: any) {
     this.idUsuario = idUsuario;
     this.mostrarActualizar = true;
+  }
+
+  restableceRegistro(){
+    this.mostrarActualizar = false;
+    this.obtenerUsuarios();
+  }
+
+  eliminar(usuario: UsuarioModel) {
+    Swal.fire({
+    icon: "question",
+    title: `¿Estás seguro que deseas eliminar a ${usuario.strNombre} ${usuario.strPrimerApellido}?`,
+    showCancelButton: true,
+    confirmButtonText: 'Sí estoy seguro',
+    cancelButtonText: "Cancelar"
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.usuarioService.deleteUsuario(usuario._id)
+        .then((response: any) => {
+          Swal.fire({
+            icon: "info",
+            text: "El usuario se eliminó exitosamente"
+          });
+          this.obtenerUsuarios();
+        })
+        .catch((error: any) => {
+          Swal.fire({
+            icon: "error",
+            text: "Error al actualizar el usuario."
+          });
+        })
+      }
+    })
   }
 
 }
