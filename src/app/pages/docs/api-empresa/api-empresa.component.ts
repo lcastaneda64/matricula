@@ -129,7 +129,7 @@ export class ApiEmpresaComponent implements OnInit {
             required: true
           },
           {
-            name: "strRazónSocial",
+            name: "strRazonSocial",
             fieldName: "Razón social",
             dataType: "string",
             required: true
@@ -216,7 +216,7 @@ export class ApiEmpresaComponent implements OnInit {
             required: true
           },
           {
-            name: "strRazónSocial",
+            name: "strRazonSocial",
             fieldName: "Razón social",
             dataType: "string",
             required: true
