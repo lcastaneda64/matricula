@@ -1,9 +1,9 @@
 <div class="card mt-5">
     <div class="card-header">
-        Actualizar usuario
+        {{this.isNew ? "Registrar usuario" : "Actualizar usuario"}}
     </div>
     <div class="card-body">
-        <form (ngSubmit)="actualizarUsuario(forma)" #forma="ngForm" class="row g-3">
+        <form (ngSubmit)="submitUsuario(forma)" #forma="ngForm" class="row g-3">
         <div class="col-md-6">
             <label for="label-strNombre" class="form-label">Nombre:</label>
             <input #inputStrNombre="ngModel"  type="text" name="strNombre" [ngClass]="{'is-invalid': inputStrNombre.touched && inputStrNombre.hasError('required') }" [(ngModel)]="usuario.strNombre" class="form-control" id="strNombre" value="" required>
@@ -33,9 +33,9 @@
         </div>
 
         <div class="col-12 text-center">
-            <button class=" btn btn-primary" type="submit" [disabled]="forma.invalid">Actualizar</button>
-            <button style="margin-left: 10px;" class=" btn btn-warning" type="button" (click)="limpiarForm(forma)">Limpiar</button>
-            <button style="margin-left: 10px;" class=" btn btn-danger" type="button" (click)="emitirActualizacion.emit()">Cancelar</button>
+            <button class=" btn btn-primary" type="submit" [disabled]="forma.invalid">{{this.isNew ? "Registrar" : "Actualizar"}}</button>
+            <button style="margin-left: 10px;" class=" btn btn-danger" type="button" (click)="limpiarForm(forma)">Limpiar</button>
+            <button *ngIf="!this.isNew" style="margin-left: 10px;" class=" btn btn-danger" type="button" (click)="emitChange.emit()">Cancelar</button>
         </div>
         </form>
     </div>

@@ -1,10 +1,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-6" *ngIf="!mostrarActualizar">
-            <app-registrar-usuario (emitirRegistro)="this.obtenerUsuarios()"></app-registrar-usuario>
+            <app-crud-detail (emitChange)="restableceRegistro()"></app-crud-detail>
         </div>
         <div class="col-6" *ngIf="mostrarActualizar">
-            <app-actualizar-usuario (emitirActualizacion)="this.restableceRegistro()" [idUsuario]="idUsuario"></app-actualizar-usuario>
+            <app-crud-detail [id]="idUsuario" (emitChange)="restableceRegistro()"></app-crud-detail>
         </div>
         <div class="col-6 mt-5">
             <div class="card">

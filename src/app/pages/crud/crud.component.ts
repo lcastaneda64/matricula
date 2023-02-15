@@ -40,6 +40,7 @@ export class CrudComponent implements OnInit {
 
   restableceRegistro(){
     this.mostrarActualizar = false;
+    this.idUsuario = "";
     this.obtenerUsuarios();
   }
 
