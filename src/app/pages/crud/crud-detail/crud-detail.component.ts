@@ -19,54 +19,47 @@ export class CrudDetailComponent implements OnInit {
   constructor(private readonly usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
-    
     this.isNew = !this.id;
-
-console.log(this.isNew);
     if(!this.isNew){
       this.usuarioService.getUsuario(this.id)
-        .then((response: any) => {
-          this.usuario = response.cont.usuario;
-        })
-        .catch(() => {});
+        .then((usuario: any) => {
+          this.usuario = usuario;
+        });
     }
   }
 
   submitUsuario(forma: NgForm){
     if(this.isNew){
-    this.usuarioService.postUsuario(this.usuario)
-    .then((response: any) => {
-      Swal.fire({
-        icon: "success",
-        text: "Se registró el usuario exitosamente"
+      this.usuarioService.postUsuario(this.usuario)
+      .then(_ => {
+        Swal.fire({
+          icon: "success",
+          text: "Se registró el usuario exitosamente"
+        });
+        this.emitChange.emit();
+      })
+      .catch((error: any) => {
+        Swal.fire({
+          icon: "error",
+          text: "Ha habido un erro al registrar el usuario"
+        });
       });
-      // forma.reset();
-      this.emitChange.emit();
-    })
-    .catch((error: any) => {
-      Swal.fire({
-        icon: "error",
-        text: "Ha habido un erro al registrar el usuario"
+    } else {
+      this.usuarioService.putUsuario(this.usuario, this.id)
+      .then(_ => {
+        Swal.fire({
+          icon: "success",
+          text: "Se actualizó el usuario exitosamente."
+        });
+        this.emitChange.emit();
+      })
+      .catch(_ => {
+        Swal.fire({
+          icon: "error",
+          text: "Ha habido un error al actualizar el usuario."
+        });
       });
-    });
-  } else {
-
-    this.usuarioService.putUsuario(this.usuario, this.id)
-    .then((response: any) => {
-      Swal.fire({
-        icon: "success",
-        text: "Se actualizó el usuario exitosamente."
-      });
-      this.emitChange.emit();
-    })
-    .catch((error: any) => {
-      Swal.fire({
-        icon: "error",
-        text: "Ha habido un error al actualizar el usuario."
-      });
-    });
-  }
-
+    }
   }
 
   limpiarForm(forma: NgForm){

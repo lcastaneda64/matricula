@@ -22,8 +22,8 @@ export class CrudComponent implements OnInit {
 
   obtenerUsuarios() {
     this.usuarioService.getUsuarios()
-    .then((response: any) => {
-      this.usuarios = response.cont.usuarios;
+    .then((usuarios: any) => {
+      this.usuarios = usuarios;
     })
     .catch((error: any) => {
       Swal.fire({
